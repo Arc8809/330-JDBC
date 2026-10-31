@@ -1,0 +1,1 @@
+The rewritten project specification, a link to the UML, a link to the ERD, a link to the Gantt chart(which specifies team responsibilities), the risk assessment, and the feature list are in the document "Group 3 Milestone 1". The data dictionary is in "Group 3 Data Dictionary". 
