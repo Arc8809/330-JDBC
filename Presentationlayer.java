@@ -14,6 +14,8 @@ public class Presentationlayer {
 
          db = new Datalayer(userName, password, database);
          db.connect();
+
+		 db.logIn();
       }
 
    public static void main(String [] args){;
