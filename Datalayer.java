@@ -27,48 +27,54 @@ public class Datalayer {
          Class.forName(DEFAULT_DRIVER);
          conn = DriverManager.getConnection(url, user, password);
          System.out.println("\nConnection to Database successful!\n");
-      } catch (ClassNotFoundException cnfe) {
+      } catch (ClassNotFoundException ex) {
          System.out.println("\nError, failed to connect to Database.");
-         System.out.println("Error Type: " + cnfe);
+         System.out.println("Error Type: " + ex);
          return false;
-      } catch (SQLException sqle) {
+      } catch (SQLException e) {
          System.out.println("\nError, failed to connect to Database.");
-         System.out.println("Error Type: " + sqle);
+         System.out.println("Error Type: " + e);
          return false;
       }
       return (conn != null);
    }
 
-   private String encrypt(String secret) {
-      String sha1 = "";
-      String value = new String(secret);
+   // Converts plain-text password into a 40-character SHA-1 hex string
+   public String encrypt(String inputPass) {
+      String hashedPass = "";
       try {
-         MessageDigest digest = MessageDigest.getInstance("SHA-1");
-         digest.reset();
-         digest.update(value.getBytes("utf8"));
-         sha1 = String.format("%040x", new BigInteger(1, digest.digest()));
+         MessageDigest md = MessageDigest.getInstance("SHA-1");
+         byte[] messageDigest = md.digest(inputPass.getBytes("UTF-8"));
+         BigInteger number = new BigInteger(1, messageDigest);
+         hashedPass = String.format("%040x", number);
       } catch (Exception e) {
-         e.printStackTrace();
+         System.out.println("Error hashing password: " + e.getMessage());
       }
-      System.out.println("The sha1 of \"" + value + "\" is:");
-      System.out.println("--->" + sha1);
-      System.out.println();
-      return sha1;
+      return hashedPass;
    }
 
-   // Create a new user with a hashed password
+   // Create a new user in UserAccount (with hashed password) and their ERD role table
    public boolean createUser(String userType, String firstName, String lastName, String username, String rawPassword) {
       String hashedPassword = encrypt(rawPassword);
       String sql = "INSERT INTO UserAccount (UserType, FirstName, LastName, Username, Password) VALUES (?, ?, ?, ?, ?)";
       try {
-         pstmt = conn.prepareStatement(sql);
+         pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
          pstmt.setString(1, userType);
          pstmt.setString(2, firstName);
          pstmt.setString(3, lastName);
          pstmt.setString(4, username);
          pstmt.setString(5, hashedPassword);
          int rows = pstmt.executeUpdate();
-         return (rows > 0);
+
+         if (rows > 0) {
+            rs = pstmt.getGeneratedKeys();
+            if (rs.next()) {
+               int newUserId = rs.getInt(1);
+               insertRoleRecord(userType, newUserId);
+            }
+            return true;
+         }
+         return false;
       } catch (SQLException sqle) {
          System.out.println("\nError creating user.");
          System.out.println("Error Type: " + sqle);
@@ -76,7 +82,26 @@ public class Datalayer {
       }
    }
 
-   // Authenticate user login by comparing SHA-1 hashes
+   // Helper method to insert User_ID into Players, Coaches, or Directors
+   private void insertRoleRecord(String userType, int userId) throws SQLException {
+      String roleSql = "";
+      if (userType.equalsIgnoreCase("Player")) {
+         roleSql = "INSERT INTO Players (User_ID) VALUES (?)";
+      } else if (userType.equalsIgnoreCase("Coach")) {
+         roleSql = "INSERT INTO Coaches (User_ID) VALUES (?)";
+      } else if (userType.equalsIgnoreCase("Director")) {
+         roleSql = "INSERT INTO Directors (User_ID) VALUES (?)";
+      }
+
+      if (!roleSql.isEmpty()) {
+         PreparedStatement roleStmt = conn.prepareStatement(roleSql);
+         roleStmt.setInt(1, userId);
+         roleStmt.executeUpdate();
+         roleStmt.close();
+      }
+   }
+
+   // Authenticate user login by comparing the SHA-1 hash of input against UserAccount
    public boolean authenticateUser(String username, String rawPassword) {
       String hashedPassword = encrypt(rawPassword);
       String sql = "SELECT User_ID, UserType, FirstName, LastName FROM UserAccount WHERE Username = ? AND Password = ?";
@@ -95,6 +120,32 @@ public class Datalayer {
          }
       } catch (SQLException sqle) {
          System.out.println("\nError authenticating user.");
+         System.out.println("Error Type: " + sqle);
+         return false;
+      }
+   }
+
+   // Allow users to change their password after verifying their current password hash
+   public boolean changePassword(String username, String oldPass, String newPass) {
+      String oldHash = encrypt(oldPass);
+      String newHash = encrypt(newPass);
+      String sql = "UPDATE UserAccount SET Password = ? WHERE Username = ? AND Password = ?";
+      try {
+         pstmt = conn.prepareStatement(sql);
+         pstmt.setString(1, newHash);
+         pstmt.setString(2, username);
+         pstmt.setString(3, oldHash);
+         int rows = pstmt.executeUpdate();
+
+         if (rows > 0) {
+            System.out.println("Password changed successfully!");
+            return true;
+         } else {
+            System.out.println("Could not change password. Check your username or old password.");
+            return false;
+         }
+      } catch (SQLException sqle) {
+         System.out.println("\nError changing password.");
          System.out.println("Error Type: " + sqle);
          return false;
       }
