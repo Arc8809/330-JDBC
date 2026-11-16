@@ -21,8 +21,8 @@ public class Datalayer {
 
    public boolean connect() {
       conn = null;
-      String url = "jdbc:mysql://localhost/" + database;
-      url = url + "?serverTimezone=UTC";
+      String url = "jdbc:mysql://localhost/";
+      url = url + database + "?serverTimezone=UTC";
       try {
          Class.forName(DEFAULT_DRIVER);
          conn = DriverManager.getConnection(url, user, password);
