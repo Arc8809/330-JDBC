@@ -4,17 +4,17 @@ public class Presentationlayer {
    public Presentationlayer() {
       System.out.println("Connecting to Database...");
 
-      System.out.print("Enter username: ");
+      System.out.print("Enter username [root]: ");
       String userName = GetInput.readLine().trim(); 
       if (userName.isEmpty()) {
          userName = "root";
       }
-      System.out.print("Enter password: ");
+      System.out.print("Enter password [student]: ");
       String password = GetInput.readLine().trim();
       if (password.isEmpty()) {
          password = "student";
       }
-      System.out.print("Enter database: ");
+      System.out.print("Enter database [esports]: ");
       String database = GetInput.readLine().trim();
       if (database.isEmpty()) {
          database = "esports";
@@ -33,7 +33,8 @@ public class Presentationlayer {
          System.out.println("\n--- Esports Auth Menu ---");
          System.out.println("1. Create User");
          System.out.println("2. Login");
-         System.out.println("3. Exit");
+         System.out.println("3. Change Password");
+         System.out.println("4. Exit");
          System.out.print("Enter choice: ");
          choice = GetInput.readLineInt();
 
@@ -65,13 +66,24 @@ public class Presentationlayer {
                break;
 
             case 3:
+               System.out.print("Enter Username: ");
+               String targetUser = GetInput.readLine().trim();
+               System.out.print("Enter Current Password: ");
+               String oldPass = GetInput.readLine().trim();
+               System.out.print("Enter New Password: ");
+               String newPass = GetInput.readLine().trim();
+
+               db.changePassword(targetUser, oldPass, newPass);
+               break;
+
+            case 4:
                db.close();
                break;
 
             default:
                System.out.println("Invalid choice. Try again.");
          }
-      } while (choice != 3);
+      } while (choice != 4);
    }
 
    public static void main(String[] args) {
