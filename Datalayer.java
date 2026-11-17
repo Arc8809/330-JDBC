@@ -135,6 +135,18 @@ public class Datalayer {
 
          if (rs.next()) {
             System.out.println("Login Successful! Welcome " + rs.getString("FirstName") + " " + rs.getString("LastName") + " (" + rs.getString("UserType") + ")");
+			 // run the user type's menu
+			 switch(rs.getString("UserType")) {
+				 case "player":
+					 runMenuP();
+					 break;
+				 case "coach":
+					 runMenuC();
+					 break;
+				 case "director":
+					 runMenuD();
+					 break;
+			 }//switch
             return true;
          } else {
             System.out.println("Login Failed: Invalid username or password.");
