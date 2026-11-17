@@ -1,1 +1,12 @@
-// SQL population
+CREATE DATABASE IF NOT EXISTS esports;
+USE esports;
+
+DROP TABLE IF EXISTS useraccount;
+CREATE TABLE useraccount (
+    User_ID INT AUTO_INCREMENT PRIMARY KEY,
+    UserType VARCHAR(10) NOT NULL,
+    FirstName VARCHAR(25) NOT NULL,
+    LastName VARCHAR(25) NOT NULL,
+    Username VARCHAR(40) NOT NULL UNIQUE,
+    Password CHAR(40) NOT NULL
+);
