@@ -11,6 +11,7 @@ public class Datalayer {
    private String password;
    private String database;
    private String userType;
+   private int userID;
 
    final String DEFAULT_DRIVER = "com.mysql.cj.jdbc.Driver";
 
@@ -136,6 +137,7 @@ public class Datalayer {
 
          if (rs.next()) {
             System.out.println("Login Successful! Welcome " + rs.getString("FirstName") + " " + rs.getString("LastName") + " (" + rs.getString("UserType") + ")\n\n");
+			 userID = rs.getInt("User_ID");
 			 // run the user type's menu
 			 switch(rs.getString("UserType")) {
 				 case "Player":
@@ -298,7 +300,8 @@ public class Datalayer {
          		System.out.println("What is your next action?");
    				System.out.println("[1] My profile");
    				System.out.println("[2] Create a tournament");
-   				System.out.println("[3] Log out");
+			    System.out.println("[3] Recent games");
+   				System.out.println("[4] Log out");
          		String userInput = GetInput.readLine();
 
          	   	switch(userInput.toLowerCase()) {
@@ -316,6 +319,12 @@ public class Datalayer {
          					break;
          			case "3":
          			case "[3]":
+         			case "recent":
+    				   		recentGamesTD();
+     						System.out.println("");
+         		   			break;
+					case "4":
+         			case "[4]":
          			case "logout":
     				   		System.out.println("\nGoodbye!");
      						stillRunning = false;
@@ -454,6 +463,40 @@ public class Datalayer {
 	public void gameSchedule() {
 		   System.out.println("Every game scheduled for the next month with the time, team, and opposing team\n");
 	}//gameSchedule
+
+	public void recentGamesTD() {
+		System.out.println(userID);
+		//fix this =!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!
+		Integer dID = 0;
+		try {
+			String query = "SELECT Director_ID FROM Directors ";
+			query += "WHERE User_ID=?;";
+			PreparedStatement stmt = conn.prepareCall(query);
+			stmt.setInt(1,userID);
+			rs = stmt.executeQuery();
+			if(rs.next()) {
+				dID = rs.getInt(1);
+			}//if
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}//catch
+		   try {
+				String query = "SELECT Tournament_ID FROM Tournaments ";
+				query += "WHERE Director_ID=?;";
+				PreparedStatement stmt = conn.prepareCall(query);
+				stmt.setInt(1,dID);
+				rs = stmt.executeQuery();
+
+		   		while(rs.next()) {
+					//set this to call GetRecentGameScoresTournament
+					//=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=
+					System.out.println(rs.getInt(1));
+		   		} //while
+
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}//catch
+	}//recentGamesTD
 
 
 	//
