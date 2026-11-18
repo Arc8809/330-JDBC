@@ -12,6 +12,7 @@ public class Datalayer {
    private String database;
    private String userType;
    private int userID;
+   private int roleID;
 
    final String DEFAULT_DRIVER = "com.mysql.cj.jdbc.Driver";
 
@@ -142,14 +143,17 @@ public class Datalayer {
 			 switch(rs.getString("UserType")) {
 				 case "Player":
 					 userType = "p";
+					 getPlayerID();
 					 runMenuP();
 					 break;
 				 case "Coach":
 					 userType = "c";
+					 getCoachID();
 					 runMenuC();
 					 break;
 				 case "Director":
 					 userType = "d";
+					 getDirectorID();
 					 runMenuD();
 					 break;
 			 }//switch
@@ -465,26 +469,11 @@ public class Datalayer {
 	}//gameSchedule
 
 	public void recentGamesTD() {
-		System.out.println(userID);
-		//fix this =!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!
-		Integer dID = 0;
-		try {
-			String query = "SELECT Director_ID FROM Directors ";
-			query += "WHERE User_ID=?;";
-			PreparedStatement stmt = conn.prepareCall(query);
-			stmt.setInt(1,userID);
-			rs = stmt.executeQuery();
-			if(rs.next()) {
-				dID = rs.getInt(1);
-			}//if
-		} catch(SQLException e) {
-			e.printStackTrace();
-		}//catch
 		   try {
 				String query = "SELECT Tournament_ID FROM Tournaments ";
 				query += "WHERE Director_ID=?;";
 				PreparedStatement stmt = conn.prepareCall(query);
-				stmt.setInt(1,dID);
+				stmt.setInt(1,roleID);
 				rs = stmt.executeQuery();
 
 		   		while(rs.next()) {
@@ -510,4 +499,52 @@ public class Datalayer {
 			System.out.println("Process to create a tournament\n");
 	}//createtournament
 
+	//
+	//~~~~~~~~~~~~~~~~~~~~ get role-specific ids ~~~~~~~~~~~~~~~~~~~~
+	//
+	public void getPlayerID() {
+		try {
+			String query = "SELECT Player_ID FROM Players ";
+			query += "WHERE User_ID=?;";
+			PreparedStatement stmt = conn.prepareCall(query);
+			stmt.setInt(1,userID);
+			rs = stmt.executeQuery();
+			if(rs.next()) {
+				roleID = rs.getInt(1);
+			}//if
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}//catch
+	}//getPlayerID
+
+	public void getCoachID() {
+		try {
+			String query = "SELECT Coach_ID FROM Coaches ";
+			query += "WHERE User_ID=?;";
+			PreparedStatement stmt = conn.prepareCall(query);
+			stmt.setInt(1,userID);
+			rs = stmt.executeQuery();
+			if(rs.next()) {
+				roleID = rs.getInt(1);
+			}//if
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}//catch
+	}//getCoachID
+
+	public void getDirectorID() {
+		try {
+			String query = "SELECT Director_ID FROM Directors ";
+			query += "WHERE User_ID=?;";
+			PreparedStatement stmt = conn.prepareCall(query);
+			stmt.setInt(1,userID);
+			rs = stmt.executeQuery();
+			if(rs.next()) {
+				roleID = rs.getInt(1);
+			}//if
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}//catch
+	}//getDirectorID
+	
 }
