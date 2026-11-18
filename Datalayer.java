@@ -134,16 +134,16 @@ public class Datalayer {
          rs = pstmt.executeQuery();
 
          if (rs.next()) {
-            System.out.println("Login Successful! Welcome " + rs.getString("FirstName") + " " + rs.getString("LastName") + " (" + rs.getString("UserType") + ")");
+            System.out.println("Login Successful! Welcome " + rs.getString("FirstName") + " " + rs.getString("LastName") + " (" + rs.getString("UserType") + ")\n\n");
 			 // run the user type's menu
 			 switch(rs.getString("UserType")) {
-				 case "player":
+				 case "Player":
 					 runMenuP();
 					 break;
-				 case "coach":
+				 case "Coach":
 					 runMenuC();
 					 break;
-				 case "director":
+				 case "Director":
 					 runMenuD();
 					 break;
 			 }//switch
