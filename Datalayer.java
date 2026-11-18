@@ -10,6 +10,7 @@ public class Datalayer {
    private String user;
    private String password;
    private String database;
+   private String userType;
 
    final String DEFAULT_DRIVER = "com.mysql.cj.jdbc.Driver";
 
@@ -138,12 +139,15 @@ public class Datalayer {
 			 // run the user type's menu
 			 switch(rs.getString("UserType")) {
 				 case "Player":
+					 userType = "p";
 					 runMenuP();
 					 break;
 				 case "Coach":
+					 userType = "c";
 					 runMenuC();
 					 break;
 				 case "Director":
+					 userType = "d";
 					 runMenuD();
 					 break;
 			 }//switch
