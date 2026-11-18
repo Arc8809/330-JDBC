@@ -488,9 +488,13 @@ public class Datalayer {
 
 			 			stmt2.execute();
 
-						System.out.println(stmt2.getString(2)+" vs "+stmt2.getString(3));
-						System.out.println(stmt2.getString(4)+"-"+stmt2.getString(5));
-						System.out.println(stmt2.getString(2)+" is the winner!\n");
+						if(stmt2.getString(2)!=NULL) {
+								System.out.println(stmt2.getString(2)+" vs "+stmt2.getString(3));
+								System.out.println(stmt2.getString(4)+"-"+stmt2.getString(5));
+								System.out.println(stmt2.getString(2)+" is the winner!\n");
+						} else {
+							System.out.println("Has not started");
+						}
 			   	} //while
 
 			} catch(SQLException e) {
