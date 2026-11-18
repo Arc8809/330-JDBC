@@ -125,11 +125,11 @@ BEGIN
 
     -- getting team scores
     SELECT HomeTeamScore INTO HomeScore
-    FROM results
+    FROM TournamentResults
     WHERE Match_ID=Match_ID_Input;
 
     SELECT AwayTeamScore INTO AwayScore
-    FROM results
+    FROM TournamentResults
     WHERE Match_ID=Match_ID_Input;
 
     -- determining higher score
