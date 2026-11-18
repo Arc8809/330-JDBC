@@ -488,7 +488,7 @@ public class Datalayer {
 
 			 			stmt2.execute();
 
-						if(stmt2.getString(2)!=NULL) {
+						if(stmt2.getString(2)!= null) {
 								System.out.println(stmt2.getString(2)+" vs "+stmt2.getString(3));
 								System.out.println(stmt2.getString(4)+"-"+stmt2.getString(5));
 								System.out.println(stmt2.getString(2)+" is the winner!\n");
