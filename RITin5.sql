@@ -108,7 +108,7 @@ CREATE DATABASE IF NOT EXISTS esports;
 
 
 
---gets the winner+loser name and scores 
+-- gets the winner+loser name and scores 
 DROP PROCEDURE IF EXISTS GetMatchWinner;
 DELIMITER $$
 
