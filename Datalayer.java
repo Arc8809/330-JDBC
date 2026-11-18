@@ -470,17 +470,28 @@ public class Datalayer {
 
 	public void recentGamesTD() {
 		   try {
-				String query = "SELECT Tournament_ID FROM Tournaments ";
+				String query = "SELECT Tournament_ID, TournamentName FROM Tournaments ";
 				query += "WHERE Director_ID=?;";
 				PreparedStatement stmt = conn.prepareCall(query);
 				stmt.setInt(1,roleID);
 				rs = stmt.executeQuery();
 
 		   		while(rs.next()) {
-					//set this to call GetRecentGameScoresTournament
-					//=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=!=
-					System.out.println(rs.getInt(1));
-		   		} //while
+						//tournamnet name
+						System.out.println(rs.getString(2));
+						
+						//get scores
+						Integer tournament_id = rs.getInt(1);
+						query = "{CALL GetRecentGameScoresTournament(?,?,?,?,?)}";
+			 			CallableStatement stmt2 = conn.prepareCall(query);
+			 			stmt2.setInt(1,tournament_id);
+
+			 			stmt2.execute();
+
+						System.out.println(stmt2.getString(2)+" vs "+stmt2.getString(3));
+						System.out.println(stmt2.getString(4)+"-"+stmt2.getString(5));
+						System.out.println(stmt2.getString(2)+" is the winner!\n");
+			   	} //while
 
 			} catch(SQLException e) {
 				e.printStackTrace();
