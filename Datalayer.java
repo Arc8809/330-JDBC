@@ -335,7 +335,7 @@ public class Datalayer {
 	   Boolean stillRunning = true;
 
 	    while(stillRunning) {
-	      	System.out.println("What is your next action?");
+	      	System.out.println("\nWhat is your next action?");
 		   	System.out.println("[1] Edit my information");
       		System.out.println("[2] See my teams");
 		   	System.out.println("[3] Back to main menu");
@@ -352,14 +352,12 @@ public class Datalayer {
 	      		   		break;
 	    		case "3":
   				case "[3]":
-	      				System.out.println("\nGoodbye!");
 	      				stillRunning = false;
 	    		   		//Goes back to the main menu
   				   		break;
 	      		default:
 	    		   		System.out.println("User input not recognized. Please try again.");
   			    }//switch
-	      		System.out.println("");
    		   }//while
 	   }//myplayerprofile
 
@@ -371,7 +369,7 @@ public class Datalayer {
 	   	   Boolean stillRunning = true;
 
 	   	    while(stillRunning) {
-	  		   	System.out.println("What is your next action?");
+	  		   	System.out.println("\nWhat is your next action?");
 	   	      	System.out.println("[1] Edit my information");
 	   		   	System.out.println("[2] See my teams");
       		   	System.out.println("[3] Back to main menu");
@@ -388,14 +386,12 @@ public class Datalayer {
 	   	      		   		break;
 	   	    		case "3":
 	  				case "[3]":
-	   	      				System.out.println("\nGoodbye!");
 	   	      				stillRunning = false;
 	   	    		   		//Goes back to the main menu
 	  				   		break;
    	      			default:
 	   	    		   		System.out.println("User input not recognized. Please try again.");
 	  			}//switch
-	   	      	System.out.println("");
 	      	}//while
 	   }//mycoachprofile
 
@@ -407,7 +403,7 @@ public class Datalayer {
 	   	   Boolean stillRunning = true;
 
 	   	    while(stillRunning) {
-	   	      	System.out.println("What is your next action?");
+	   	      	System.out.println("\nWhat is your next action?");
 	   		   	System.out.println("[1] Edit my information");
       		   	System.out.println("[2] See my tournaments");
 	   	      	System.out.println("[3] Back to main menu");
@@ -424,14 +420,12 @@ public class Datalayer {
    	      				   	break;
 	   	      		case "3":
 	   	    		case "[3]":
-	  				   		System.out.println("\nGoodbye!");
 	   	      				stillRunning = false;
 	   	      				//Goes back to the main menu
 	   	      		   		break;
 	   				default:
       				   		System.out.println("User input not recognized. Please try again.");
 	   	      	}//switch
-	   	       System.out.println("");
 	      	}//while
 	   }//mydirectorprofile
 
@@ -441,12 +435,12 @@ public class Datalayer {
 	//
 	public void teamSearch() {
 		System.out.println("Menu offering to search by sport, name, or coach");
-	   System.out.println("Then a user can select a team, get information on it, and choose whether to join");
+	   System.out.println("Then a user can select a team, get information on it, and choose whether to join\n");
    }//teamsearch
 
 	public void tournamentSearch() {
 		System.out.println("Menu offering to search by sport, name, or director");
-	    System.out.println("Then a user can select a tournament, get information on it, and choose whether to add one of their teams");
+	    System.out.println("Then a user can select a tournament, get information on it, and choose whether to add one of their teams\n");
    }//tournament search
 
 
@@ -454,7 +448,7 @@ public class Datalayer {
 	//~~~~~~~~~~~~~~~~~~~~ reports ~~~~~~~~~~~~~~~~~~~~
 	//
 	public void gameSchedule() {
-		   System.out.println("Every game scheduled for the next month with the time, team, and opposing team");
+		   System.out.println("Every game scheduled for the next month with the time, team, and opposing team\n");
 	}//gameSchedule
 
 
@@ -462,11 +456,11 @@ public class Datalayer {
 	//~~~~~~~~~~~~~~~~~~~~ create processes ~~~~~~~~~~~~~~~~~~~~
 	//
 	public void createTeam() {
-			System.out.println("Process to create a team");
+			System.out.println("Process to create a team\n");
 	}//createteam
 
 	public void createTournament() {
-			System.out.println("Process to create a tournament");
+			System.out.println("Process to create a tournament\n");
 	}//createtournament
 
 }
