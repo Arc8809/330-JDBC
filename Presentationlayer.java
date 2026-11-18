@@ -14,10 +14,10 @@ public class Presentationlayer {
       if (password.isEmpty()) {
          password = "student";
       }
-      System.out.print("Enter database [esports]: ");
+      System.out.print("Enter database [Esports]: ");
       String database = GetInput.readLine().trim();
       if (database.isEmpty()) {
-         database = "esports";
+         database = "Esports";
       } 
 
       db = new Datalayer(userName, password, database);
@@ -31,10 +31,10 @@ public class Presentationlayer {
       int choice = 0;
       do {
          System.out.println("\n--- Esports Auth Menu ---");
-         System.out.println("1. Create User");
-         System.out.println("2. Login");
-         System.out.println("3. Change Password");
-         System.out.println("4. Exit");
+         System.out.println("[1] Create User");
+         System.out.println("[2] Login");
+         System.out.println("[3] Change Password");
+         System.out.println("[4] Exit");
          System.out.print("Enter choice: ");
          choice = GetInput.readLineInt();
 
