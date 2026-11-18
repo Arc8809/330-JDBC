@@ -493,7 +493,7 @@ public class Datalayer {
 								System.out.println(stmt2.getString(4)+"-"+stmt2.getString(5));
 								System.out.println(stmt2.getString(2)+" is the winner!\n");
 						} else {
-							System.out.println("Has not started");
+							System.out.println("Games have not begun for this tournament");
 						}
 			   	} //while
 
