@@ -174,8 +174,9 @@ BEGIN
 
     SELECT Match_ID INTO M_ID
     FROM matches JOIN TournamentResults USING(Match_ID)
-    WHERE Tournament_ID=Tournament_ID_Input
-    LIMIT 1;
+    WHERE Tournament_ID=Tournament_ID_Input 
+    AND status="Completed"
+    LIMIT 1;	
 
     CALL GetMatchWinner(M_ID,Winner,Loser,WinnerScore,LoserScore);
 
