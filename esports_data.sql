@@ -31,20 +31,20 @@ VALUES
     (3,  'Player',   'Anuj',      'Agrawal',     'aagrandplayer',     'REPLACE_WITH_PASSWORD_HASH_03'),
     (4,  'Player',   'Anderson',  'Cardenas',    'geekyglasses04',    'REPLACE_WITH_PASSWORD_HASH_04'),
     (5,  'Player',   'Colm',      'Mcternan',    'Crchen59',          'REPLACE_WITH_PASSWORD_HASH_05'),
-    (6,  'Player',   'Robert',    'Kostin',      'costinyosantity',   'REPLACE_WITH_PASSWORD_HASH_06'),
+    (6,  'Player',   'Dan',       'Weil',        'dandadan34',        'REPLACE_WITH_PASSWORD_HASH_06'),
     (7,  'Player',   'Quinn',     'Reed',        'qreed',             'REPLACE_WITH_PASSWORD_HASH_07'),
     (8,  'Player',   'Skyler',    'Martin',      'smartin',           'REPLACE_WITH_PASSWORD_HASH_08'),
     (9,  'Player',   'Drew',      'Wilson',      'dwilson',           'REPLACE_WITH_PASSWORD_HASH_09'),
     (10, 'Player',   'Alex',      'Rivera',      'arivera',           'REPLACE_WITH_PASSWORD_HASH_10'),
     (11, 'Player',   'Jamie',     'Nguyen',      'jnguyen',           'REPLACE_WITH_PASSWORD_HASH_11'),
     (12, 'Player',   'Casey',     'Thompson',    'cthompson',         'REPLACE_WITH_PASSWORD_HASH_12'),
-    (13, 'Coach',    'Dan',       'Bogaard',     'shinyHead4ever',    'REPLACE_WITH_PASSWORD_HASH_13'),
+    (13, 'Coach',    'Robert',    'Kostin',      'costinyosantity',    'REPLACE_WITH_PASSWORD_HASH_13'),
     (14, 'Coach',    'Erik',      'Golen',       'aisupreme',         'REPLACE_WITH_PASSWORD_HASH_14'),
     (15, 'Coach',    'Bryan',     'French',      'frenchfriesrgreat', 'REPLACE_WITH_PASSWORD_HASH_15'),
     (16, 'Coach',    'Betty',     'Hillman',     'billsFan1',         'REPLACE_WITH_PASSWORD_HASH_16'),
     (17, 'Coach',    'Sylvia',    'Perez-Hardy', 'datab8sestar',      'REPLACE_WITH_PASSWORD_HASH_17'),
     (18, 'Coach',    'Lee',       'Foster',      'lfoster',           'REPLACE_WITH_PASSWORD_HASH_18'),
-    (19, 'Director', 'Dan',       'Bogaard',     'dandadan34',        'REPLACE_WITH_PASSWORD_HASH_19'),
+    (19, 'Director', 'Dan',       'Bogaard',     'shinyHead4ever',        'REPLACE_WITH_PASSWORD_HASH_19'),
     (20, 'Director', 'Matt',      'Huenerfauth', 'Hauntthehouse24',   'REPLACE_WITH_PASSWORD_HASH_20');
 
 -- 2. ROLE-SPECIFIC RECORDS
