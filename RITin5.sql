@@ -157,3 +157,28 @@ BEGIN
 END$$
 
 DELIMITER ;
+
+-- gets the scores of the most recent games in a tournament
+DROP PROCEDURE IF EXISTS GetRecentGameScoresTournament;
+DELIMITER $$
+
+CREATE PROCEDURE GetRecentGameScoresTournament(
+    IN Tournament_ID_Input INT,
+    OUT Winner VARCHAR(100),
+    OUT Loser VARCHAR(100),
+    OUT WinnerScore INT,
+    OUT LoserScore INT
+) 
+BEGIN
+    DECLARE M_ID INT;
+
+    SELECT Match_ID INTO M_ID
+    FROM matches JOIN TournamentResults USING(Match_ID)
+    WHERE Tournament_ID=Tournament_ID_Input
+    LIMIT 1;
+
+    CALL GetMatchWinner(M_ID,Winner,Loser,WinnerScore,LoserScore);
+
+END$$
+
+DELIMITER ;
