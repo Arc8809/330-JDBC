@@ -136,21 +136,21 @@ VALUES
 
 -- 8. MATCHES
 -- HomeTeamName and AwayTeamName reference Teams.TeamName.
--- GameName references Games.GameName.
+-- Game_ID references Games.GameName.
 INSERT INTO Matches
-    (Match_ID, HomeTeamName, AwayTeamName, GameName, Match_Date, Status)
+    (Match_ID, HomeTeamName, AwayTeamName, Game_ID, Match_Date, Status)
 VALUES
-    (3001, 'Team Nova',            'Phantom Esports',      'Valorant',
+    (3001, 'Team Nova',            'Phantom Esports',      1,
      '2026-09-12 14:00:00', 'Completed'),
-    (3002, 'Phantom Esports',      'Team Nova',            'Valorant',
+    (3002, 'Phantom Esports',      'Team Nova',            1,
      '2026-09-18 16:00:00', 'Completed'),
-    (3003, 'Rift Raiders',         'Blue Nexus',           'League of Legends',
+    (3003, 'Rift Raiders',         'Blue Nexus',           2,
      '2026-12-06 13:00:00', 'Scheduled'),
-    (3004, 'Blue Nexus',           'Rift Raiders',         'League of Legends',
+    (3004, 'Blue Nexus',           'Rift Raiders',         2,
      '2026-12-10 15:00:00', 'Scheduled'),
-    (3005, 'Payload Pros',         'Overtime & Underpaid', 'Overwatch',
+    (3005, 'Payload Pros',         'Overtime & Underpaid', 3,
      '2026-10-28 18:00:00', 'Completed'),
-    (3006, 'Overtime & Underpaid', 'Payload Pros',         'Overwatch',
+    (3006, 'Overtime & Underpaid', 'Payload Pros',         3,
      '2026-11-12 18:00:00', 'Scheduled');
 
 -- 9. TOURNAMENT RESULTS
