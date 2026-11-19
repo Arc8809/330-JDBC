@@ -142,17 +142,17 @@ public class Datalayer {
 			 // run the user type's menu
 			 switch(rs.getString("UserType")) {
 				 case "Player":
-					 userType = "p";
+					 userType = "Player";
 					 getPlayerID();
 					 runMenuP();
 					 break;
 				 case "Coach":
-					 userType = "c";
+					 userType = "Coach";
 					 getCoachID();
 					 runMenuC();
 					 break;
 				 case "Director":
-					 userType = "d";
+					 userType = "Director";
 					 getDirectorID();
 					 runMenuD();
 					 break;
@@ -205,10 +205,10 @@ public class Datalayer {
    	   Boolean stillRunning = true;
 
    	   while(stillRunning) {
-   		   	System.out.println("What is your next action?");
+   		   	System.out.println("--- Main Menu ---");
    		   	System.out.println("[1] My profile");
    		   	System.out.println("[2] Find a tournament");
-   		   	System.out.println("[3] Game schedule");
+   		   	System.out.println("[3] Tournament news");
    	   		System.out.println("[4] Log out");
    		   	String userInput = GetInput.readLine();
 
@@ -344,10 +344,31 @@ public class Datalayer {
    //
    //~~~~~~~~~~~~~~~~~~~~ personal profiles ~~~~~~~~~~~~~~~~~~~~
    //
+	public void myProfile() {
+	   try {
+			String query = "SELECT Username, FirstName, LastName FROM UserAccount ";
+			query += "WHERE User_ID=?;";
+			PreparedStatement stmt = conn.prepareCall(query);
+			stmt.setInt(1,userID);
+			rs = stmt.executeQuery();
+
+		   	if(rs.next()) {
+					//tournamnet name
+					System.out.println("\n\n--- "+rs.getString(1)+"' account ---");	
+					System.out.println("First name: "+rs.getString(2));	
+					System.out.println("Last name: "+rs.getString(3));	
+					System.out.println("Account type: "+userType);	
+
+		   	} //if
+
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}//catch
+   }//myProfile
+	
    public void myPlayerProfile() {
 		//a player account's personal profile
-	   System.out.println("My information(name, teams, stats)");
-	   System.out.println("Menu offering edit data, teams, back to main menu");
+	    myProfile();
 
 	   Boolean stillRunning = true;
 
@@ -380,8 +401,7 @@ public class Datalayer {
 
 	   public void myCoachProfile() {
 			//a coach account's personal profile
-	   	   System.out.println("My information(name, teams, stats)");
-	   	   System.out.println("Menu offering edit data, see my teams, back to main menu");
+	   	    myProfile();
 
 	   	   Boolean stillRunning = true;
 
@@ -414,9 +434,8 @@ public class Datalayer {
 
 	   public void myDirectorProfile() {
 			//a director account's personal profile
-	   	   System.out.println("My information(name, tournaments)");
-	   	   System.out.println("Menu offering edit personal data, see tournaments, back to main menu");
-
+	   	    myProfile();
+		   
 	   	   Boolean stillRunning = true;
 
 	   	    while(stillRunning) {
