@@ -175,6 +175,7 @@ BEGIN
     FROM matches JOIN TournamentResults USING(Match_ID)
     WHERE Tournament_ID=Tournament_ID_Input 
     AND status="Completed"
+    ORDER BY Match_Date DESC
     LIMIT 1;	
 
     CALL GetMatchWinner(M_ID,Winner,Loser,WinnerScore,LoserScore);
