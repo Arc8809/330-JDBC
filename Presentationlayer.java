@@ -14,7 +14,7 @@ public class Presentationlayer {
       if (password.isEmpty()) {
          password = "student";
       }
-      System.out.print("Enter database [Esports]: ");
+      System.out.print("Enter database [ESMS]: ");
       String database = GetInput.readLine().trim();
       if (database.isEmpty()) {
          database = "Esports";
