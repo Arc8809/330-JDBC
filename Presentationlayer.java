@@ -17,7 +17,7 @@ public class Presentationlayer {
       System.out.print("Enter database [ESMS]: ");
       String database = GetInput.readLine().trim();
       if (database.isEmpty()) {
-         database = "Esports";
+         database = "ESMS";
       } 
 
       db = new Datalayer(userName, password, database);
