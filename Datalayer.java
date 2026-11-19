@@ -250,7 +250,7 @@ public class Datalayer {
       	   Boolean stillRunning = true;
 
       	   while(stillRunning) {
-      		   	System.out.println("What is your next action?");
+      		   	System.out.println("--- Main Menu ---");
 				System.out.println("[1] My profile");
 				System.out.println("[2] Create a team");
 				System.out.println("[3] Find a tournament");
@@ -301,7 +301,7 @@ public class Datalayer {
            Boolean stillRunning = true;
 
            while(stillRunning) {
-         		System.out.println("What is your next action?");
+         		System.out.println("--- Main Menu ---");
    				System.out.println("[1] My profile");
    				System.out.println("[2] Create a tournament");
 			    System.out.println("[3] Tournament news");
