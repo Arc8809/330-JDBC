@@ -304,7 +304,7 @@ public class Datalayer {
          		System.out.println("What is your next action?");
    				System.out.println("[1] My profile");
    				System.out.println("[2] Create a tournament");
-			    System.out.println("[3] Recent games");
+			    System.out.println("[3] Tournament news");
    				System.out.println("[4] Log out");
          		String userInput = GetInput.readLine();
 
