@@ -198,17 +198,6 @@ DELIMITER ;
 -- Optional cleanup: uncomment to clear existing sample data.
 -- Delete child records before parent records to respect foreign keys.
 
-DELETE FROM TournamentResults;
-DELETE FROM Matches;
-DELETE FROM TournamentRegistration;
-DELETE FROM TeamMembership;
-DELETE FROM Tournaments;
-DELETE FROM Teams;
-DELETE FROM Games;
-DELETE FROM Directors;
-DELETE FROM Coaches;
-DELETE FROM Players;
-DELETE FROM UserAccount;
 
 -- 1. USER ACCOUNTS (Passwords are 'pass1', 'pass2', 'pass3', etc. matching the User_ID)
 INSERT INTO UserAccount
