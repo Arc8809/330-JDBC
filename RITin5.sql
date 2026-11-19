@@ -104,7 +104,6 @@ CREATE TABLE TournamentRegistration (
     FOREIGN KEY (Tournament_ID) REFERENCES Tournaments(Tournament_ID),
     FOREIGN KEY (TeamName) REFERENCES Teams(TeamName)
 ) ENGINE=InnoDB;
-CREATE DATABASE IF NOT EXISTS esports;
 
 
 
