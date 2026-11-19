@@ -5,7 +5,7 @@ This will begin the java database connectivity.
 
 You will first be prompted to sign into the database
 
-You will use the followinng inputs 
+You will use the following inputs 
 username: root
 password:student
 Database:ESMS
