@@ -208,7 +208,7 @@ public class Datalayer {
    		   	System.out.println("--- Main Menu ---");
    		   	System.out.println("[1] My profile");
    		   	System.out.println("[2] Find a tournament");
-   		   	System.out.println("[3] Tournament news");
+   		   	System.out.println("[3] Game Schedule");
    	   		System.out.println("[4] Log out");
    		   	String userInput = GetInput.readLine();
 
