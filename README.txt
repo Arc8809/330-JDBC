@@ -1,1 +1,12 @@
-The rewritten project specification, a link to the UML, a link to the ERD, a link to the Gantt chart(which specifies team responsibilities), the risk assessment, and the feature list are in the document "Group 3 Milestone 1". The data dictionary is in "Group 3 Data Dictionary". 
+To begin program please source the ESMS.sql file in a sql terminal. This will create and populate the ESMS Database
+
+Then proceed to the presentationlayer.java file and run it.
+This will begin the java database connectivity.
+
+You will first be prompted to sign into the database
+
+You will use the followinng inputs 
+username: root
+password:student
+Database:ESMS
+
